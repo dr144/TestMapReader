@@ -11,6 +11,13 @@
 		8C3389DA2AF6B86D001BB5DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3389D92AF6B86D001BB5DB /* ContentView.swift */; };
 		8C3389DC2AF6B86E001BB5DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C3389DB2AF6B86E001BB5DB /* Assets.xcassets */; };
 		8C3389E02AF6B86E001BB5DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C3389DF2AF6B86E001BB5DB /* Preview Assets.xcassets */; };
+		8C3389E72AF6B897001BB5DB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8C3389E62AF6B897001BB5DB /* LICENSE */; };
+		8C3389E92AF6B902001BB5DB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3389E82AF6B902001BB5DB /* ViewModel.swift */; };
+		8C3389EF2AF6B919001BB5DB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3389EA2AF6B918001BB5DB /* LocationManager.swift */; };
+		8C3389F02AF6B919001BB5DB /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3389EB2AF6B919001BB5DB /* Enums.swift */; };
+		8C3389F12AF6B919001BB5DB /* ItemInforView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3389EC2AF6B919001BB5DB /* ItemInforView.swift */; };
+		8C3389F22AF6B919001BB5DB /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3389ED2AF6B919001BB5DB /* MapView.swift */; };
+		8C3389F32AF6B919001BB5DB /* SearchPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3389EE2AF6B919001BB5DB /* SearchPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +27,13 @@
 		8C3389DB2AF6B86E001BB5DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C3389DD2AF6B86E001BB5DB /* TestMapReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestMapReader.entitlements; sourceTree = "<group>"; };
 		8C3389DF2AF6B86E001BB5DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8C3389E62AF6B897001BB5DB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		8C3389E82AF6B902001BB5DB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		8C3389EA2AF6B918001BB5DB /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		8C3389EB2AF6B919001BB5DB /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		8C3389EC2AF6B919001BB5DB /* ItemInforView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInforView.swift; sourceTree = "<group>"; };
+		8C3389ED2AF6B919001BB5DB /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		8C3389EE2AF6B919001BB5DB /* SearchPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +50,7 @@
 		8C3389CB2AF6B86D001BB5DB = {
 			isa = PBXGroup;
 			children = (
+				8C3389E62AF6B897001BB5DB /* LICENSE */,
 				8C3389D62AF6B86D001BB5DB /* TestMapReader */,
 				8C3389D52AF6B86D001BB5DB /* Products */,
 			);
@@ -54,6 +69,12 @@
 			children = (
 				8C3389D72AF6B86D001BB5DB /* TestMapReaderApp.swift */,
 				8C3389D92AF6B86D001BB5DB /* ContentView.swift */,
+				8C3389E82AF6B902001BB5DB /* ViewModel.swift */,
+				8C3389EB2AF6B919001BB5DB /* Enums.swift */,
+				8C3389EC2AF6B919001BB5DB /* ItemInforView.swift */,
+				8C3389EA2AF6B918001BB5DB /* LocationManager.swift */,
+				8C3389ED2AF6B919001BB5DB /* MapView.swift */,
+				8C3389EE2AF6B919001BB5DB /* SearchPickerView.swift */,
 				8C3389DB2AF6B86E001BB5DB /* Assets.xcassets */,
 				8C3389DD2AF6B86E001BB5DB /* TestMapReader.entitlements */,
 				8C3389DE2AF6B86E001BB5DB /* Preview Content */,
@@ -127,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3389E72AF6B897001BB5DB /* LICENSE in Resources */,
 				8C3389E02AF6B86E001BB5DB /* Preview Assets.xcassets in Resources */,
 				8C3389DC2AF6B86E001BB5DB /* Assets.xcassets in Resources */,
 			);
@@ -139,7 +161,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3389F32AF6B919001BB5DB /* SearchPickerView.swift in Sources */,
+				8C3389F22AF6B919001BB5DB /* MapView.swift in Sources */,
+				8C3389EF2AF6B919001BB5DB /* LocationManager.swift in Sources */,
 				8C3389DA2AF6B86D001BB5DB /* ContentView.swift in Sources */,
+				8C3389F02AF6B919001BB5DB /* Enums.swift in Sources */,
+				8C3389E92AF6B902001BB5DB /* ViewModel.swift in Sources */,
+				8C3389F12AF6B919001BB5DB /* ItemInforView.swift in Sources */,
 				8C3389D82AF6B86D001BB5DB /* TestMapReaderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
