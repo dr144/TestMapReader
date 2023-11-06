@@ -37,13 +37,13 @@ struct MapView: View {
     let initialDistance = 10000.0
     let initialHeading = 0.0
     let initialPitch = 0.0
-
+    
     var body: some View {
         
         VStack {
             
             MapReader { mapProxy in
-            
+                
                 Map(position: $viewModel.mapCameraPosition, selection: $viewModel.selectedMapItem) {
                     
                     // show user location
@@ -73,14 +73,14 @@ struct MapView: View {
                 
                 
                 .onTapGesture(coordinateSpace: .local) { location in
-
+                    
                     if let coordinate: CLLocationCoordinate2D = mapProxy.convert(location, from: .local) {
-
+                        
                         viewModel.tappedCoordinate = coordinate
-
+                        
                         var minDistance = CLLocationDistance(10000000)
                         var minIndex: Int?
-
+                        
                         // find the closest search result and make it active
                         for (someIndex, someMKMapItem) in viewModel.searchResults.enumerated() {
                             if coordinate.distance(from: someMKMapItem.placemark.coordinate) < minDistance {
@@ -88,18 +88,16 @@ struct MapView: View {
                                 minIndex = someIndex
                             }
                         }
-
+                        
                         // set the selected map item, this will trigger calling getDirections via the onChange:selectedMapItem
                         if let daMinIndex = minIndex {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                withAnimation(.easeInOut(duration: 1.0)) {
-                                    viewModel.selectedMapItem = viewModel.searchResults[daMinIndex]
-                                }
+                            withAnimation(.easeInOut(duration: 1.0)) {
+                                viewModel.selectedMapItem = viewModel.searchResults[daMinIndex]
                             }
                         }
                     }
                 } // close onTapGesture
-
+                
             } // close MapReader
             
             .onChange(of: viewModel.searchResults) {

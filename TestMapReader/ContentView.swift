@@ -30,18 +30,25 @@ import MapKit
 
 struct ContentView: View {
     
+    // Access the ViewModel shared across the environment.
     @EnvironmentObject var viewModel: ViewModel
     
+    // The body property contains the description of the view's content.
     var body: some View {
+        
+        // Use a vertical stack to arrange subviews vertically.
         VStack {
+            // Inject the viewModel into the MapView and expand it to fill the available space, ignoring the safe area constraints.
             MapView(viewModel: viewModel)
                 .edgesIgnoringSafeArea(.all)
         }
         
+        // Overlay other views on top of the VStack content.
         .overlay(alignment: .center) {
             VStack{
-                
+                // Horizontal stack for pickers allowing selection of map type and transportation type.
                 HStack {
+                    // Picker for map types with a segmented style.
                     Picker("", selection: $viewModel.mapType) {
                         ForEach(MapTypes.allCases, id: \.self) { value in
                             //                            Text(value.description)
@@ -51,6 +58,7 @@ struct ContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     
+                    // Picker for transport types with a segmented style.
                     Picker("", selection: $viewModel.transportType) {
                         ForEach(TransitTypes.allCases, id: \.self) { value in
                             Image(systemName: value.symbol)
@@ -68,13 +76,14 @@ struct ContentView: View {
                 .cornerRadius(12)
                 
                 
-                Spacer()
+                Spacer() // This spacer pushes the content to the top and bottom of the screen
                 
                 
                 HStack {
-                    Spacer()
+                    Spacer() // Pushes content to the middle.
                     VStack(spacing: 0) {
                         if let selectedMapItem = viewModel.selectedMapItem {
+                            // Disclosure group that shows additional information about a selected item from the map.
                             DisclosureGroup("", isExpanded: $viewModel.showLookAround) {
                                 ItemInfoView(selectedResult: selectedMapItem, route: viewModel.route)
                                     .frame(maxWidth: .infinity)
@@ -84,6 +93,7 @@ struct ContentView: View {
                             }
                         }
 
+                        // The search picker view allows for searching and selecting map items.
                         ZStack {
                             SearchPickerView(searchResults: $viewModel.searchResults, visibleRegion: viewModel.mapVisibleRegion)
                                 .fixedSize(horizontal: true, vertical: false)
@@ -108,6 +118,7 @@ struct ContentView: View {
         
     } // close View body
     
+    // Helper function to adjust the padding based on whether the look around view is shown.
     func topPadding() -> Double {
         if viewModel.showLookAround {
             return 10

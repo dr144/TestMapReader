@@ -28,6 +28,7 @@
 import SwiftUI
 import MapKit
 
+// ViewModel is the central store for all data needed by the views.
 class ViewModel: ObservableObject {
     
     @Published var mapType: MapTypes = .standard
@@ -42,6 +43,7 @@ class ViewModel: ObservableObject {
     @Published var showLookAround: Bool = true
     @Published var searchResults: [MKMapItem] = []
     
+    // Computed property to get the user's current location.
     var userLocation: CLLocationCoordinate2D? {
         guard let daLocation = locationManager.location?.coordinate else {
             return nil
@@ -49,31 +51,39 @@ class ViewModel: ObservableObject {
         return CLLocationCoordinate2D(latitude: daLocation.latitude, longitude: daLocation.longitude)
     }
     
+    // Function to retrieve directions from the user's location to a selected map item.
     func getDirections() {
         self.route = nil
-        guard let selectedMapItem else { return }
         
+        // Ensure that there is a selected map item to get directions to.
+        guard let selectedMapItem else { return }
+
+        // Ensure the user's location is available.
         guard let location = userLocation else { return }
         
+        // Prepare a directions request using the user's location and selected map item.
         let request = MKDirections.Request()
         
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: location))
         request.destination = selectedMapItem
         request.requestsAlternateRoutes = true
-                
+        
+        // Choose the appropriate transport type based on the user selection.
         request.transportType = transportType == .any ? .any : ( transportType == .automobile ? .automobile : ( transportType == .walking ? .walking : (transportType == .transit ? .transit : .any)))
         
-        // make sure to update route on the main thread
+        // Perform the directions request asynchronously.
         Task {
             let directions = MKDirections(request: request)
             do {
+                // Await the response from the directions request.
                 let response = try await directions.calculate()
-                // Ensure you update the UI on the main thread
+                // Update the UI on the main thread with the first received route.
                 DispatchQueue.main.async {
                     self.route = response.routes.first
                     print("found \(response.routes.count) different routes!")
                 }
             } catch {
+                // Handle any errors during the directions request.
                 print("Error getting directions: \(error.localizedDescription)")
             }
         }

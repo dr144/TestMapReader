@@ -27,13 +27,21 @@
 
 import SwiftUI
 
+// The @main attribute identifies the app's entry point
 @main
 struct TestMapReaderApp: App {
     
+    // Create a state object of the ViewModel to be shared across the app.
+    // This @StateObject will be alive as long as the app is running.
     @StateObject var viewModel: ViewModel = ViewModel()
     
+    // The body property describes the app's scene.
+    // Here we define the user interface and behavior of the app.
     var body: some Scene {
+        // A WindowGroup is a container for the app's user interface and corresponds to a window on the platform.
         WindowGroup {
+            // ContentView is the root view of the app where the user interface is defined.
+            // We inject the viewModel environment object here so it can be accessed by any child view.
             ContentView()
                 .environmentObject(viewModel)
         }

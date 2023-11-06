@@ -43,7 +43,7 @@ struct ItemInfoView: View {
     }
     
     private var travelTime: String? {
-        guard let route else { return nil }
+        guard let route = route else { return nil }
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
         formatter.allowedUnits = [.hour, .minute]
