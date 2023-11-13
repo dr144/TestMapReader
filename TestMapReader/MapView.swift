@@ -73,28 +73,8 @@ struct MapView: View {
                 
                 
                 .onTapGesture(coordinateSpace: .local) { location in
-                    
                     if let coordinate: CLLocationCoordinate2D = mapProxy.convert(location, from: .local) {
-                        
-                        viewModel.tappedCoordinate = coordinate
-                        
-                        var minDistance = CLLocationDistance(10000000)
-                        var minIndex: Int?
-                        
-                        // find the closest search result and make it active
-                        for (someIndex, someMKMapItem) in viewModel.searchResults.enumerated() {
-                            if coordinate.distance(from: someMKMapItem.placemark.coordinate) < minDistance {
-                                minDistance = coordinate.distance(from: someMKMapItem.placemark.coordinate)
-                                minIndex = someIndex
-                            }
-                        }
-                        
-                        // set the selected map item, this will trigger calling getDirections via the onChange:selectedMapItem
-                        if let daMinIndex = minIndex {
-                            withAnimation(.easeInOut(duration: 1.0)) {
-                                viewModel.selectedMapItem = viewModel.searchResults[daMinIndex]
-                            }
-                        }
+                        viewModel.findClosest(to: coordinate)
                     }
                 } // close onTapGesture
                 
@@ -106,8 +86,12 @@ struct MapView: View {
                 viewModel.mapCameraPosition = .automatic
             }
             
-            .onChange(of: viewModel.selectedMapItem) {
-                viewModel.getDirections()
+            .onChange(of: viewModel.route) {
+                if let itemTag = viewModel.selectedMapItemTag {
+                    withAnimation(.easeIn(duration: 1.0)) {
+                        viewModel.selectedMapItem = viewModel.searchResults[itemTag]
+                    }
+                }
             }
             
             .onChange(of: viewModel.transportType) {

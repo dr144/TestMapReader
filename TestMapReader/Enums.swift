@@ -36,10 +36,12 @@ enum SearchType: String, Equatable, CaseIterable, Codable {
     case DogPark = "Dog Park"
     case BikeShop = "Bike Shop"
     case CoffeeShop = "Coffee Shop"
-    case Restaurants = "Restaurants"
-    case Bars = "Bars"
+    case Restaurant = "Restaurants"
+    case Bar = "Bars"
+    case Theater = "Theaters, Playhouses and Performing Arts Venues"
+    case Museum = "Museums and Art Galleries"
     
-    static let supportedTypes: [SearchType] = [.Playground, .Park, .Beach, .DogPark, .BikeShop, .CoffeeShop, .Restaurants, .Bars]
+    static let supportedTypes: [SearchType] = [.Playground, .Park, .Beach, .DogPark, .BikeShop, .CoffeeShop, .Restaurant, .Bar, .Theater, .Museum]
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     
@@ -52,8 +54,10 @@ enum SearchType: String, Equatable, CaseIterable, Codable {
         case .DogPark: return "dog park"
         case .BikeShop: return "bike shop"
         case .CoffeeShop: return "coffee shop"
-        case .Restaurants: return "restaurants"
-        case .Bars: return "bars"
+        case .Restaurant: return "restaurants"
+        case .Bar: return "bars"
+        case .Theater: return "theaters"
+        case .Museum: return "museums"
         }
     }
     
@@ -66,8 +70,10 @@ enum SearchType: String, Equatable, CaseIterable, Codable {
         case .DogPark: return "dog"
         case .BikeShop: return "bicycle"
         case .CoffeeShop: return "mug"
-        case .Restaurants: return "fork.knife"
-        case .Bars: return "wineglass"
+        case .Restaurant: return "fork.knife"
+        case .Bar: return "wineglass"
+        case .Theater: return "theatermasks"
+        case .Museum: return "paintpalette"
         }
     }
 }

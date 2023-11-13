@@ -51,6 +51,31 @@ class ViewModel: ObservableObject {
         return CLLocationCoordinate2D(latitude: daLocation.latitude, longitude: daLocation.longitude)
     }
     
+    func findClosest(to coordinate: CLLocationCoordinate2D) {
+        
+        self.tappedCoordinate = coordinate
+        
+        var minDistance = CLLocationDistance(10000000)
+        var minIndex: Int?
+        
+        // find the closest search result and make it active
+        for (someIndex, someMKMapItem) in self.searchResults.enumerated() {
+            if coordinate.distance(from: someMKMapItem.placemark.coordinate) < minDistance {
+                minDistance = coordinate.distance(from: someMKMapItem.placemark.coordinate)
+                minIndex = someIndex
+            }
+        }
+        
+        // set the selected map item, this will trigger calling getDirections via the onChange:selectedMapItem
+        if let daMinIndex = minIndex {
+            self.selectedMapItemTag = daMinIndex
+            self.selectedMapItem = self.searchResults[daMinIndex]
+        }
+        
+        // get the directions and set the route
+        getDirections()
+    }
+    
     // Function to retrieve directions from the user's location to a selected map item.
     func getDirections() {
         self.route = nil
@@ -71,8 +96,9 @@ class ViewModel: ObservableObject {
         // Choose the appropriate transport type based on the user selection.
         request.transportType = transportType == .any ? .any : ( transportType == .automobile ? .automobile : ( transportType == .walking ? .walking : (transportType == .transit ? .transit : .any)))
         
-        // Perform the directions request asynchronously.
+        // Perform the directions request asynchronously: respond using onChange in MapView
         Task {
+            
             let directions = MKDirections(request: request)
             do {
                 // Await the response from the directions request.
@@ -86,6 +112,7 @@ class ViewModel: ObservableObject {
                 // Handle any errors during the directions request.
                 print("Error getting directions: \(error.localizedDescription)")
             }
+            
         }
     }
 }

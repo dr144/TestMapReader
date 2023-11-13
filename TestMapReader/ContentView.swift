@@ -69,9 +69,7 @@ struct ContentView: View {
                     
                 } // close HStack
                 .fixedSize(horizontal: true, vertical: false)
-                .padding([.top, .bottom], 10)
-                .padding([.trailing], 12)
-                .padding([.leading], 3)
+                .padding(9)
                 .background(.ultraThinMaterial)
                 .cornerRadius(12)
                 
@@ -94,14 +92,14 @@ struct ContentView: View {
                         }
 
                         // The search picker view allows for searching and selecting map items.
-                        ZStack {
+//                        ZStack {
                             SearchPickerView(searchResults: $viewModel.searchResults, visibleRegion: viewModel.mapVisibleRegion)
                                 .fixedSize(horizontal: true, vertical: false)
                                 .padding([.top], topPadding() )
-                                .padding([.trailing], 4)
-                                .padding([.leading], -2)
-                        }
-                        .padding([.bottom],10)
+                                .padding([.trailing], 3)
+                                .padding([.leading], 2)
+//                        }
+                        .padding([.bottom],11)
                     }
                     Spacer()
                 }
